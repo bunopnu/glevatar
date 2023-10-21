@@ -1,23 +1,38 @@
-name: test
-
+name: tests
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
+  - push
+  - pull_request
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: erlef/setup-beam@v1
+      - uses: actions/checkout@v4
+
+      - name: Set up Gleam
+        uses: erlef/setup-beam@v1
         with:
-          otp-version: "26.0.2"
+          otp-version: "26"
           gleam-version: "0.31.0"
           rebar3-version: "3"
-          # elixir-version: "1.15.4"
-      - run: gleam format --check src test
-      - run: gleam deps download
-      - run: gleam test
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Check Format
+        run: gleam format --check src test
+
+      - name: Get Dependencies
+        run: gleam deps download
+
+      - name: Test for Erlang
+        run: gleam test --target erlang
+
+      - name: Test for NodeJS
+        run: gleam test --runtime node --target javascript
+
+      - name: Test for Deno
+        run: gleam test --runtime deno --target javascript
