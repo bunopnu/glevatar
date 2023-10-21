@@ -1,4 +1,3 @@
-import gleam/io
 import gleam/map
 import gleam/int
 import gleam/bit_string
@@ -102,18 +101,4 @@ pub fn to_string(builder: GravatarBuilder) -> String {
   builder
   |> to_uri()
   |> uri.to_string()
-}
-
-pub fn main() {
-  "test@example.com"
-  |> new()
-  |> io.debug()
-  |> set_size(600)
-  |> io.debug()
-  |> set_default_image(Wavatar)
-  |> io.debug()
-  |> set_rating(Parental)
-  |> io.debug()
-  |> to_string()
-  |> io.debug()
 }
