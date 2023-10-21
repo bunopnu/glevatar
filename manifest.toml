@@ -9,5 +9,5 @@ packages = [
 
 [requirements]
 gleam_stdlib = { version = "~> 0.31" }
-gleeunit = { version = "~> 0.10" }
+gleeunit = { version = "~> 0.11" }
 glesha = { version = "~> 0.1" }
