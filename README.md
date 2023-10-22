@@ -26,7 +26,7 @@ gleam add glevatar
 
 ## Documentation
 
-Consult the [HexDocs](https://hexdocs.pm/glavatar/) for API reference.
+Consult the [HexDocs](https://hexdocs.pm/glevatar/) for API reference.
 
 ## License
 
