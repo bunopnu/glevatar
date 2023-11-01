@@ -2,7 +2,7 @@
 
 import gleam/map
 import gleam/int
-import gleam/bit_string
+import gleam/bit_array
 import gleam/uri
 import gleam/option
 import glesha
@@ -49,7 +49,7 @@ pub type ImageRating {
 pub fn new(email: String) -> GravatarBuilder {
   let hash =
     email
-    |> bit_string.from_string()
+    |> bit_array.from_string()
     |> glesha.hash(glesha.Sha256)
     |> glesha.encode_hex()
 

@@ -1,12 +1,13 @@
 name = "glevatar"
-version = "0.1.0"
+version = "0.1.1"
 description = "Easily create Gravatar URLs in Gleam"
+gleam = ">= 0.32.0"
 
 licences = ["MIT"]
 repository = { type = "github", user = "bunopnu", repo = "glevatar" }
 
 [dependencies]
-gleam_stdlib = "~> 0.31"
+gleam_stdlib = "~> 0.32"
 glesha = "~> 0.1"
 
 [dev-dependencies]
