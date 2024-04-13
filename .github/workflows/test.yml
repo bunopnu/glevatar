@@ -3,6 +3,7 @@ name: tests
 on:
   - push
   - pull_request
+  - workflow_dispatch
 
 jobs:
   test:
@@ -15,7 +16,7 @@ jobs:
         uses: erlef/setup-beam@v1
         with:
           otp-version: "26"
-          gleam-version: "0.32.0"
+          gleam-version: "1"
           rebar3-version: "3"
 
       - name: Set up Deno
