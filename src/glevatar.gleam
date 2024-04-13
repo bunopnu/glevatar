@@ -1,6 +1,6 @@
 //// Easily create Gravatar URLs in Gleam.
 
-import gleam/map
+import gleam/dict
 import gleam/int
 import gleam/bit_array
 import gleam/uri
@@ -9,7 +9,7 @@ import glesha
 
 /// This type defines a Gravatar builder, which should not be manually modified.
 pub type GravatarBuilder =
-  #(String, map.Map(String, String))
+  #(String, dict.Dict(String, String))
 
 /// This type is employed when the provided email address does not correspond to any Gravatar image.
 pub type DefaultImage {
@@ -53,13 +53,13 @@ pub fn new(email: String) -> GravatarBuilder {
     |> glesha.hash(glesha.Sha256)
     |> glesha.encode_hex()
 
-  #(hash, map.new())
+  #(hash, dict.new())
 }
 
 /// Set a specific image size; the default is `80`.
 pub fn set_size(builder: GravatarBuilder, size: Int) -> GravatarBuilder {
   let #(hash, options) = builder
-  #(hash, map.insert(options, "s", int.to_string(size)))
+  #(hash, dict.insert(options, "s", int.to_string(size)))
 }
 
 /// Set the default image to be used when the provided email address doesn't match any image.
@@ -80,7 +80,7 @@ pub fn set_default_image(
     CustomImage(url) -> url
   }
 
-  #(hash, map.insert(options, "d", value))
+  #(hash, dict.insert(options, "d", value))
 }
 
 /// Set image rating restrictions.
@@ -96,7 +96,7 @@ pub fn set_rating(
     Adult -> "x"
   }
 
-  #(hash, map.insert(options, "r", value))
+  #(hash, dict.insert(options, "r", value))
 }
 
 /// Convert the `GravatarBuilder` into an Uri structure.
@@ -106,7 +106,7 @@ pub fn to_uri(builder: GravatarBuilder) -> uri.Uri {
   let path = "/avatar/" <> hash
   let query =
     options
-    |> map.to_list
+    |> dict.to_list
     |> uri.query_to_string
 
   uri.Uri(

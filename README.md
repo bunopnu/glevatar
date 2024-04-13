@@ -16,7 +16,7 @@ gleam add glevatar
 
 ## Compatibility
 
-This library requires Gleam version `0.32.0` or later.
+This library requires Gleam version `1.0.0` or later.
 
 ## Example
 
